@@ -1,7 +1,7 @@
 <?php
 
 require_once "../app/Models/User.php";
-require_once "../app/Models/EmployeeProfile.php";
+require_once "../app/Models/Employee.php";
 
 require_once "../app/Core/Controller.php";
 require_once "../app/Core/Auth.php";
@@ -12,7 +12,7 @@ class EmployeeController extends Controller
     {
         Auth::requireAdmin();
 
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
         $employees = $employeeModel->all();
 
         $this->view('admin/employee/index', [
@@ -31,7 +31,7 @@ class EmployeeController extends Controller
         }
 
         $userModel = new User();
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
 
         try {
             $userModel->begin();
@@ -97,7 +97,7 @@ class EmployeeController extends Controller
 
         $userId = (int) $_GET['id'];
 
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
         $employee = $employeeModel->findFullProfileByUserId($userId);
 
         if (!$employee) {
@@ -122,7 +122,7 @@ class EmployeeController extends Controller
         }
 
         $userId = (int) $_GET['id'];
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
 
         $employee = $employeeModel->findFullProfileByUserId($userId);
 
@@ -148,7 +148,7 @@ class EmployeeController extends Controller
         }
 
         $userId = (int) $_GET['id'];
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
         $userModel = new User();
 
         try {

@@ -3,12 +3,15 @@
         <i class="fas fa-bars"></i>
     </button>
 
-    <a class="navbar-brand fw-bold tracking-wide" href="#">HRMSYS</a>
+    <a class="navbar-brand fw-bold tracking-wide" href="index.php?url=dashboard">HRMSYS</a>
 
     <div class="ms-auto d-flex align-items-center gap-3">
-        <div class="d-none d-md-flex align-items-center bg-white rounded px-2">
-            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." style="width:180px;">
-            <i class="fas fa-search text-muted"></i>
+
+        <div class="d-none d-md-flex align-items-center rounded p-1 transition-all bg-[#0D6EFD]">
+            <div id="searchIcon" class="cursor-pointer text-muted">
+                <i class="fas fa-search fa-xl"></i>
+            </div>
+            <input type="text" id="searchInput" style="transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;" class="form-control border-0 shadow-none w-0 opacity-0 transition-all duration-300 ease-in-out" placeholder="Search...">
         </div>
 
         <button class="btn text-white" id="darkToggle">

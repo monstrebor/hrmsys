@@ -1,7 +1,7 @@
 <?php
 
 require_once "../app/Models/User.php";
-require_once "../app/Models/EmployeeProfile.php";
+require_once "../app/Models/Employee.php";
 
 require_once "../app/Core/Controller.php";
 require_once "../app/Core/Auth.php";
@@ -14,7 +14,7 @@ class EmployeePortalController extends Controller
 
         $userId = (int) $_SESSION['user']['id'];
 
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
         $employee = $employeeModel->findFullProfileByUserId($userId);
 
         if (!$employee) {
@@ -35,7 +35,7 @@ class EmployeePortalController extends Controller
 
         $userId = (int) $_SESSION['user']['id'];
 
-        $employeeModel = new EmployeeProfile();
+        $employeeModel = new Employee();
         $employee = $employeeModel->findFullProfileByUserId($userId);
 
         $contentFile = __DIR__ . '/../../Modules/employee-portal/index.php';

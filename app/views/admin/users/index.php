@@ -1,10 +1,8 @@
-<div class="d-flex min-vh-100">
+<div class="flex-grow-1 ml-16 transition-all">
+    <?php require_once __DIR__ . '/../../partials/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/../../partials/navbar.php'; ?>
 
-    <!-- SIDEBAR -->
-    <?php require_once __DIR__ . '/../partials/sidebar.php'; ?>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow-1 bg-light p-4">
+    <main class="bg-light p-20">
         <div class="container-fluid">
             <?php require_once __DIR__ . '/../../partials/notif.php'; ?>
             <h2 class="mb-0 text-center">Users Management</h2>

@@ -13,33 +13,22 @@
     <link rel="stylesheet" href="/hrmsys/public/assets/css/login.css">
     <link rel="stylesheet" href="/hrmsys/public/assets/css/partials.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
 </head>
 
 <body>
 
-    <?php
-    $url = $_GET['url'] ?? 'home';
-    $publicRoutes = ['login', 'register'];
-    ?>
-    <?php if (in_array($url, $publicRoutes)) : ?>
-        <main>
-            <?= $content ?? '' ?>
-        </main>
-    <?php elseif ($url === 'home') : ?>
-        <main>
-            <?= $content ?? '' ?>
-        </main>
-    <?php else : ?>
+    <main>
         <?= $content ?? '' ?>
-    <?php endif; ?>
+    </main>
 
-
-    <script src="/hrmsys/public/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/hrmsys/public/assets/js/navbar.js"></script>
     <script src="/hrmsys/public/assets/js/scripts.js"></script>
     <script src="/hrmsys/public/assets/js/sidebar.js"></script>
+    <script src="/hrmsys/public/assets/js/currentTime.js"></script>
     <script src="/hrmsys/public/assets/js/editUserModal.js"></script>
     <script src="/hrmsys/public/assets/js/changePasswordModal.js"></script>
-    <script src="/hrmsys/public/assets/js/currentTime.js"></script>
+    <script src="/hrmsys/public/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
