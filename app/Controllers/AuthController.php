@@ -11,106 +11,6 @@ require_once "../app/Core/EmailView.php";
 
 class AuthController extends Controller
 {
-    public function register()
-    {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $this->view('auth/register', ['title' => 'Register | SEMSYS']);
-            return;
-        }
-
-        $name  = trim($_POST['name'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-
-        if (!$name || !$email) {
-            $_SESSION['error'] = "All fields are required.";
-            header("Location: index.php?url=register");
-            exit;
-        }
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['error'] = "Invalid email address.";
-            header("Location: index.php?url=register");
-            exit;
-        }
-
-        $token = bin2hex(random_bytes(32));
-
-        $userModel = new User();
-        if (!$userModel->registerWithoutPassword($name, $email, $token)) {
-            $_SESSION['error'] = "Email already exists.";
-            header("Location: index.php?url=register");
-            exit;
-        }
-
-        $link = "http://localhost/semsys/public/index.php?url=set-password&token=$token";
-
-        $sent = Mailer::send(
-            $email,
-            "Set your SEMSYS password",
-            "<p>Hello <strong>$name</strong>,</p>
-         <p>Click the link below to set your password:</p>
-         <p><a href='$link'>$link</a></p>
-         <p>This link expires in 1 hour.</p>"
-        );
-
-        if (!$sent) {
-            $_SESSION['error'] = "Account created, but email failed. Contact admin.";
-            header("Location: index.php?url=login");
-            exit;
-        }
-
-        $_SESSION['success'] = "Account created. Please check your email.";
-        header("Location: index.php?url=login");
-        exit;
-    }
-
-    public function setPassword()
-    {
-        $token = $_GET['token'] ?? '';
-
-        $userModel = new User();
-        if (!$userModel->isValidToken($token)) {
-            $this->view('auth/token-expired', [
-                'title' => 'Link Expired'
-            ]);
-            return;
-        }
-
-        $this->view('auth/set-password', [
-            'title' => 'Set Password',
-            'token' => $token
-        ]);
-    }
-
-
-    public function savePassword()
-    {
-        $token    = $_POST['token'] ?? '';
-        $password = $_POST['password'] ?? '';
-
-        if (!$token || !$password) {
-            die("Invalid request.");
-        }
-
-        if (strlen($password) < 8) {
-            die("Password must be at least 8 characters.");
-        }
-
-        $userModel = new User();
-
-        $updated = $userModel->setPasswordByToken($token, $password);
-
-        if ($updated) {
-            $this->view('auth/password-success', [
-                'title' => 'Success'
-            ]);
-            return;
-        }
-
-        $this->view('auth/token-expired', [
-            'title' => 'Link Expired'
-        ]);
-    }
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -169,7 +69,53 @@ class AuthController extends Controller
         header("Location: index.php?url=home");
         exit;
     }
+    public function setPassword()
+    {
+        $token = $_GET['token'] ?? '';
 
+        $userModel = new User();
+        if (!$userModel->isValidToken($token)) {
+            $this->view('auth/token-expired', [
+                'title' => 'Link Expired'
+            ]);
+            return;
+        }
+
+        $this->view('auth/set-password', [
+            'title' => 'Set Password',
+            'token' => $token
+        ]);
+    }
+
+
+    public function savePassword()
+    {
+        $token    = $_POST['token'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        if (!$token || !$password) {
+            die("Invalid request.");
+        }
+
+        if (strlen($password) < 8) {
+            die("Password must be at least 8 characters.");
+        }
+
+        $userModel = new User();
+
+        $updated = $userModel->setPasswordByToken($token, $password);
+
+        if ($updated) {
+            $this->view('auth/password-success', [
+                'title' => 'Success'
+            ]);
+            return;
+        }
+
+        $this->view('auth/token-expired', [
+            'title' => 'Link Expired'
+        ]);
+    }
 
     public function sessionExpired()
     {

@@ -4,22 +4,18 @@
         <div class="school-logo"></div>
 
         <h1 class="title">SEMSYS</h1>
-        <p class="subtitle">School Event Management System</p>
+        <p class="subtitle">School Employee Management System</p>
 
-        <div class="divider"></div>
+        <div class="divider w-100 mx-n3"></div>
 
         <p class="description">
-            Manage school events, registrations, and announcements
+            Manage employees, students, registrations, and announcements
             in one modern and centralized platform.
         </p>
 
         <div class="d-grid gap-3 mt-4">
             <a href="index.php?url=login" class="btn btn-primary btn-lg custom-btn">
                 Login
-            </a>
-
-            <a href="index.php?url=register" class="btn btn-outline-light btn-lg custom-btn">
-                Register
             </a>
         </div>
 

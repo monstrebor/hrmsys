@@ -18,7 +18,6 @@ $url = $_GET['url'] ?? 'home';
 $publicRoutes = [
     'home',
     'login',
-    'register',
     'session-expired'
 ];
 
@@ -42,11 +41,7 @@ if (Auth::check()) {
 switch ($url) {
 
     case 'home':
-        View::render("home", ['title' => 'Welcome | SEMSYS']);
-        break;
-
-    case 'register':
-        (new AuthController)->register();
+        View::render("home", ['title' => 'Welcome | HRMSYS']);
         break;
 
     case 'set-password':

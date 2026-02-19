@@ -10,13 +10,13 @@ class DashboardController extends Controller
 
         if (Auth::isAdmin()) {
             $this->view('admin/dashboard', [
-                'title' => 'Admin Dashboard | SEMSYS'
+                'title' => 'Admin Dashboard | HRMSYS'
             ]);
             return;
         }
 
         $this->view('user/dashboard', [
-            'title' => 'Dashboard | SEMSYS'
+            'title' => 'Dashboard | HRMSYS'
         ]);
     }
 }

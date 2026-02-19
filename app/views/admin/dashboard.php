@@ -1,10 +1,9 @@
-<div class="d-flex min-vh-100">
+<div class="flex-grow-1 ml-16 transition-all">
+    <?php require_once __DIR__ . '/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
 
-    <!-- SIDEBAR -->
-    <?php require_once __DIR__ . '/partials/partials/sidebar.php'; ?>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow-1 bg-light p-4">
+    <!-- Main Dashboard Content -->
+    <main class="bg-light p-20">
         <div class="container-fluid">
             <div class="alert alert-success">
                 ✅ Login successful! Welcome <?= $_SESSION['user']['name']; ?>
