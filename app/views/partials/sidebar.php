@@ -29,7 +29,7 @@
 
             <li class="group">
                 <a href="index.php?url=employee-portal" class="nav-link text-white rounded hover:bg-white hover:bg-opacity-10">
-                    <i class="fas fa-clipboard-list me-2"></i><span class="nav-text hidden group-hover:inline">Manage Employee Portal</span>
+                    <i class="fas fa-clipboard-list me-2"></i><span class="nav-text hidden group-hover:inline">Employee Portal</span>
                 </a>
             </li>
 

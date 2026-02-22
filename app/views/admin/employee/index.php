@@ -1,9 +1,9 @@
-<div class="d-flex min-vh-100">
+<div class="flex-grow-1 ml-16 transition-all">
 
-    <!-- SIDEBAR -->
-    <?php require_once __DIR__ . '/../partials/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/../../partials/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/../../partials/navbar.php'; ?>
 
-    <!-- MAIN CONTENT -->
+
     <main class="flex-grow-1 bg-light p-4">
         <div class="container-fluid">
             <?php require_once __DIR__ . '/../../partials/notif.php'; ?>

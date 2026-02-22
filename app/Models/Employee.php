@@ -3,16 +3,17 @@ require_once "../app/Core/Database.php";
 
 class Employee extends Database
 {
+    protected $table = 'employees';
+
     public function __construct()
     {
         $this->conn = Database::getInstance()->getConnection();
     }
 
-    // Method to create a new employee profile
     public function create($data)
     {
         $stmt = $this->conn->prepare("
-            INSERT INTO employee_profiles
+            INSERT INTO {$this->table}
             (user_id, employee_id, employee_type, department, position, campus, employment_status, date_hired)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ");
@@ -29,47 +30,39 @@ class Employee extends Database
         ]);
     }
 
-    // Method to find an employee profile by user ID
     public function findByUserId($userId)
     {
         $stmt = $this->conn->prepare("
-            SELECT *
-            FROM employee_profiles
-            WHERE user_id = ? 
-            LIMIT 1
+            SELECT * FROM {$this->table} WHERE user_id = ? LIMIT 1
         ");
-
         $stmt->execute([$userId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Method to retrieve all employee profiles with user details
     public function all()
     {
         $stmt = $this->conn->prepare("
             SELECT 
                 u.id AS user_id,
-                ep.id AS employee_profile_id,
+                e.id AS employee_id,
                 u.name,
                 u.email,
                 u.isActive,
-                ep.employee_id,
-                ep.employee_type,
-                ep.department,
-                ep.position,
-                ep.campus,
-                ep.employment_status,
-                ep.date_hired
+                e.employee_id AS emp_code,
+                e.employee_type,
+                e.department,
+                e.position,
+                e.campus,
+                e.employment_status,
+                e.date_hired
             FROM users u
-            INNER JOIN employee_profiles ep ON ep.user_id = u.id
+            INNER JOIN {$this->table} e ON e.user_id = u.id
             ORDER BY u.id DESC
         ");
-
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Method to retrieve full employee profile by user ID
     public function findFullProfileByUserId($userId)
     {
         $stmt = $this->conn->prepare("
@@ -78,31 +71,29 @@ class Employee extends Database
                 u.name,
                 u.email,
                 u.isActive,
-                ep.id AS employee_profile_id,
-                ep.employee_id,
-                ep.employee_type,
-                ep.department,
-                ep.position,
-                ep.campus,
-                ep.employment_status,
-                ep.date_hired,
-                ep.profile_image,
-                ep.cover_image
+                e.id AS employee_id,
+                e.employee_id AS emp_code,
+                e.employee_type,
+                e.department,
+                e.position,
+                e.campus,
+                e.employment_status,
+                e.date_hired,
+                e.profile_image,
+                e.cover_image
             FROM users u
-            LEFT JOIN employee_profiles ep ON ep.user_id = u.id
+            LEFT JOIN {$this->table} e ON e.user_id = u.id
             WHERE u.id = ?
             LIMIT 1
         ");
-
         $stmt->execute([$userId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Method to update employee profile
     public function updateProfile($userId, $data)
     {
         $stmt = $this->conn->prepare("
-            UPDATE employee_profiles SET
+            UPDATE {$this->table} SET
                 employee_id = ?,
                 employee_type = ?,
                 department = ?,
