@@ -26,6 +26,7 @@
     <script src="/hrmsys/public/assets/js/scripts.js"></script>
     <script src="/hrmsys/public/assets/js/sidebar.js"></script>
     <script src="/hrmsys/public/assets/js/currentTime.js"></script>
+    <script src="/hrmsys/public/assets/js/imagePreview.js"></script>
     <script src="/hrmsys/public/assets/js/editUserModal.js"></script>
     <script src="/hrmsys/public/assets/js/progressBarPassword.js"></script>
     <script src="/hrmsys/public/assets/js/changePasswordModal.js"></script>

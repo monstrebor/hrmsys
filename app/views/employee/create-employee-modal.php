@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
-            <form method="POST" action="index.php?url=admin-employees-create">
+            <form method="POST" action="index.php?url=admin-employees-create" enctype="multipart/form-data">
                 <div class="modal-body">
 
                     <h6 class="text-muted mb-3">Account Information</h6>
@@ -20,6 +20,28 @@
                     <div class="mb-3">
                         <label class="form-label">Email Address</label>
                         <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Profile Image</label>
+                            <input type="file" name="profile_image" id="profileImageInput" class="form-control" accept="image/*">
+
+                            <div class="mt-2">
+                                <img id="profileImagePreview" src="<?= $profileImage ?? '/hrmsys/public/assets/images/default-profile.jpg' ?>"
+                                    alt="Profile Preview" class="rounded-circle border border-2 border-gray-300 shadow-sm w-32 h-32 object-cover">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cover Image</label>
+                            <input type="file" name="cover_image" id="coverImageInput" class="form-control" accept="image/*">
+
+                            <div class="mt-2">
+                                <img id="coverImagePreview" src="<?= $coverImage ?? '/hrmsys/public/assets/images/default-cover.jpg' ?>"
+                                    alt="Cover Preview" class="rounded-xl shadow-sm w-full h-48 object-cover">
+                            </div>
+                        </div>
                     </div>
 
                     <hr>

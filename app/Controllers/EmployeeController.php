@@ -5,6 +5,7 @@ require_once "../app/Models/Employee.php";
 
 require_once "../app/Core/Controller.php";
 require_once "../app/Core/Auth.php";
+require_once '../app/Core/Image.php';
 
 class EmployeeController extends Controller
 {
@@ -15,7 +16,7 @@ class EmployeeController extends Controller
         $employeeModel = new Employee();
         $employees = $employeeModel->all();
 
-        $this->view('admin/employee/index', [
+        $this->view('employee/index', [
             'title' => 'Employee Management | SEMSYS',
             'employees' => $employees
         ]);
@@ -27,6 +28,19 @@ class EmployeeController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header("Location: index.php?url=admin-employees");
+            exit;
+        }
+
+        $imageHandler = new Image();
+        $profileImage = null;
+        $coverImage = null;
+
+        try {
+            $profileImage = $imageHandler->upload($_FILES['profile_image'] ?? []);
+            $coverImage = $imageHandler->upload($_FILES['cover_image'] ?? []);
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            header("Location: index.php?url=employee-index");
             exit;
         }
 
@@ -60,10 +74,14 @@ class EmployeeController extends Controller
                 'position'          => $_POST['position'],
                 'campus'            => $_POST['campus'],
                 'employment_status' => $_POST['employment_status'],
-                'date_hired'        => $_POST['date_hired']
+                'date_hired'        => $_POST['date_hired'],
+                'profile_image'     => $profileImage,
+                'cover_image'       => $coverImage
             ]);
 
             $userModel->commit();
+
+            $_SESSION['success'] = "Employee registered successfully.";
 
             session_write_close();
 
@@ -77,8 +95,6 @@ class EmployeeController extends Controller
                     'employee_id' => $_POST['employee_id']
                 ])
             );
-
-            $_SESSION['success'] = "Employee registered successfully.";
         } catch (Exception $e) {
             $userModel->rollback();
             $_SESSION['error'] = $e->getMessage();
@@ -87,7 +103,6 @@ class EmployeeController extends Controller
         header("Location: index.php?url=employee-index");
         exit;
     }
-
     public function viewEmployee()
     {
         Auth::requireAdmin();
@@ -108,7 +123,7 @@ class EmployeeController extends Controller
             exit;
         }
 
-        $this->view('admin/employee/show-employee', [
+        $this->view('employee/show-employee', [
             'title'    => 'Employee Profile | SEMSYS',
             'employee' => $employee
         ]);
@@ -128,13 +143,13 @@ class EmployeeController extends Controller
 
         $employee = $employeeModel->findFullProfileByUserId($userId);
 
-        if (!$employee || !$employee['employee_profile_id']) {
+        if (!$employee || !$employee['employee_id']) {
             $_SESSION['error'] = "Employee profile not found for this user.";
             header("Location: index.php?url=employee-index");
             exit;
         }
 
-        $this->view('admin/employee/edit-employee', [
+        $this->view('employee/edit-employee', [
             'title' => 'Edit Employee | SEMSYS',
             'employee' => $employee
         ]);
@@ -152,12 +167,25 @@ class EmployeeController extends Controller
         $userId = (int) $_GET['id'];
         $employeeModel = new Employee();
         $userModel = new User();
+        $imageHandler = new Image();
 
         try {
             $employeeModel->begin();
 
-            if (!$employeeModel->findByUserId($userId)) {
+            $employee = $employeeModel->findByUserId($userId);
+            if (!$employee) {
                 throw new Exception("Employee profile does not exist.");
+            }
+
+            $profileImage = $employee['profile_image'];
+            $coverImage   = $employee['cover_image'];
+
+            if (!empty($_FILES['profile_image']['name'])) {
+                $profileImage = $imageHandler->upload($_FILES['profile_image']);
+            }
+
+            if (!empty($_FILES['cover_image']['name'])) {
+                $coverImage = $imageHandler->upload($_FILES['cover_image']);
             }
 
             $employeeModel->updateProfile($userId, [
@@ -168,6 +196,8 @@ class EmployeeController extends Controller
                 'campus'            => $_POST['campus'],
                 'employment_status' => $_POST['employment_status'],
                 'date_hired'        => $_POST['date_hired'] ?: date('Y-m-d'),
+                'profile_image'     => $profileImage,
+                'cover_image'       => $coverImage
             ]);
 
             $userModel->update($userId, [

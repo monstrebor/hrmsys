@@ -20,7 +20,7 @@ class UserController extends Controller
         $users        = $userModel->all($_SESSION['user']['id']);
         $inactiveUsers = $userModel->allInactive();
 
-        $this->view('admin/users/index', [
+        $this->view('admin/manage-users/index', [
             'title'         => 'Users Management | SEMSYS',
             'users'         => $users,
             'inactiveUsers' => $inactiveUsers

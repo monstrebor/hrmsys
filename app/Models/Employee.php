@@ -13,10 +13,21 @@ class Employee extends Database
     public function create($data)
     {
         $stmt = $this->conn->prepare("
-            INSERT INTO {$this->table}
-            (user_id, employee_id, employee_type, department, position, campus, employment_status, date_hired)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        ");
+        INSERT INTO {$this->table}
+        (
+            user_id,
+            employee_id,
+            employee_type,
+            department,
+            position,
+            campus,
+            employment_status,
+            date_hired,
+            profile_image,
+            cover_image
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ");
 
         return $stmt->execute([
             $data['user_id'],
@@ -26,7 +37,9 @@ class Employee extends Database
             $data['position'],
             $data['campus'],
             $data['employment_status'],
-            $data['date_hired']
+            $data['date_hired'],
+            $data['profile_image'],
+            $data['cover_image']
         ]);
     }
 
@@ -93,16 +106,18 @@ class Employee extends Database
     public function updateProfile($userId, $data)
     {
         $stmt = $this->conn->prepare("
-            UPDATE {$this->table} SET
-                employee_id = ?,
-                employee_type = ?,
-                department = ?,
-                position = ?,
-                campus = ?,
-                employment_status = ?,
-                date_hired = ?
-            WHERE user_id = ?
-        ");
+        UPDATE {$this->table} SET
+            employee_id = ?,
+            employee_type = ?,
+            department = ?,
+            position = ?,
+            campus = ?,
+            employment_status = ?,
+            date_hired = ?,
+            profile_image = ?,
+            cover_image = ?
+        WHERE user_id = ?
+    ");
 
         return $stmt->execute([
             $data['employee_id'],
@@ -112,6 +127,8 @@ class Employee extends Database
             $data['campus'],
             $data['employment_status'],
             $data['date_hired'],
+            $data['profile_image'] ?? null,
+            $data['cover_image'] ?? null,
             $userId
         ]);
     }
