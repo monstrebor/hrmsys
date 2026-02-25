@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2026 at 03:46 PM
+-- Generation Time: Feb 25, 2026 at 01:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -99,10 +99,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `isNew`, `isAdmin`, `isActive`, `created_at`, `reset_token`, `reset_expires`) VALUES
 (4, 'Robert Janssen T. Campos', 'r@gmail.com', '$2y$10$fMGCg6aurb7c8TVxMgr1TOv9tNoPJsIxENWzyqbehO.ailZVilk.m', 1, 1, 1, '2026-01-03 10:31:11', NULL, NULL),
-(23, 'WHAT Janssen T. Campos', 'monstreborvinsmoke025@gmail.com', '$2y$10$./VwBMBVY8U8/kxdbFawaOXCc7SBJbBHRVFc2i.0ZRQ1u5tv8ghq2', 0, 1, 1, '2026-01-10 12:26:26', NULL, NULL),
-(28, 'Adolf Hitler', 'itoayakingpangalan@gmail.com', '$2y$10$25PxzP6/wmHu1pRhJBSwq.rbI4atMsH2nzywSJIugT8HkHF1YejQe', 0, 1, 1, '2026-01-14 02:23:09', NULL, NULL),
+(23, 'sample robert', 'monstreborvinsmoke025@gmail.com', '$2y$10$./VwBMBVY8U8/kxdbFawaOXCc7SBJbBHRVFc2i.0ZRQ1u5tv8ghq2', 0, 1, 1, '2026-01-10 12:26:26', NULL, NULL),
+(28, 'sample', 'sample@gmail.com', '$2y$10$B.oE00/D0CEeN5WVNQFCWe/hrZ8886YgChFRfDEnsYowyOq0rYueW', 0, 1, 1, '2026-01-14 02:23:09', NULL, NULL),
 (34, 'Robert Janssen T. Campos', 'rohoh59030@mustaer.com', '$2y$10$umcNH/Mmh2341qnS6tK4bOGexcLpxEmiG1INT/9xucHXAvJ/rlBIi', 0, 0, 1, '2026-01-19 14:54:11', NULL, NULL),
-(36, 'Franz Kafka ssssss', 'slypoyrporjzfglpbw@xfavaj.com', '$2y$10$ZLR8CXbMDIkebITmEEmjN.xgNkoUr18dpxNgYgbZDzR7QZ7bjOipa', 0, 0, 1, '2026-02-01 09:45:11', NULL, NULL);
+(36, 'Franz Kafka', 'hey@gmail.com', '$2y$10$ZLR8CXbMDIkebITmEEmjN.xgNkoUr18dpxNgYgbZDzR7QZ7bjOipa', 1, 0, 1, '2026-02-01 09:45:11', NULL, NULL),
+(40, 'Franz Kafka nigga', 'itoayakingpangalan@gmail.com', '$2y$10$XeIIPTIaOePKNSPbjdCPB.DoX2Sc25ZM97xqi9t/FwtKS20t1t1vO', 0, 0, 1, '2026-02-25 11:36:25', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -140,7 +141,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee_requests`
@@ -152,7 +153,7 @@ ALTER TABLE `employee_requests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

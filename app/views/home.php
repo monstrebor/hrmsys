@@ -1,9 +1,10 @@
 <section class="home-bg">
-    <div class="home-card text-center">
 
+    <div class="home-card text-center">
+        <?php require_once __DIR__ . '/partials/notif.php'; ?>
         <div class="school-logo"></div>
 
-        <h1 class="title">SEMSYS</h1>
+        <h1 class="title text-5xl font-bold">HRMSYS</h1>
         <p class="subtitle">School Employee Management System</p>
 
         <div class="divider w-100 mx-n3"></div>

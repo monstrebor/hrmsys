@@ -17,8 +17,11 @@
                     <input type="password" id="confirm-password" class="form-control" required>
                     <small id="passwordMatch" class="form-text"></small>
                 </div>
-                <div class="progress" style="height: 5px;">
-                    <div id="passwordStrength" class="progress-bar" role="progressbar" style="width: 0;"></div>
+                <div class="progress mt-3 rounded-pill" style="height: 6px;">
+                    <div id="strengthBar"
+                        class="progress-bar rounded-pill"
+                        style="width: 0%; transition: 0.4s;">
+                    </div>
                 </div>
             </div>
 

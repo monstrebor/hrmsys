@@ -9,13 +9,13 @@ class DashboardController extends Controller
         Auth::requireLogin();
 
         if (Auth::isAdmin()) {
-            $this->view('admin/dashboard', [
+            $this->view('admin/index', [
                 'title' => 'Admin Dashboard | HRMSYS'
             ]);
             return;
         }
 
-        $this->view('user/dashboard', [
+        $this->view('user/index', [
             'title' => 'Dashboard | HRMSYS'
         ]);
     }

@@ -8,7 +8,7 @@ require_once "../app/Core/Auth.php";
 //controllers
 require_once "../app/Controllers/AuthController.php";
 require_once "../app/Controllers/DashboardController.php";
-require_once "../app/Controllers/AdminController.php";
+require_once "../app/Controllers/UserController.php";
 require_once "../app/Controllers/EmployeeController.php";
 require_once "../app/Controllers/ProfileController.php";
 require_once "../app/Controllers/EmployeePortalController.php";
@@ -44,14 +44,6 @@ switch ($url) {
         View::render("home", ['title' => 'Welcome | HRMSYS']);
         break;
 
-    case 'set-password':
-        (new AuthController)->setPassword();
-        break;
-
-    case 'save-password':
-        (new AuthController)->savePassword();
-        break;
-
     case 'login':
         (new AuthController)->login();
         break;
@@ -69,23 +61,23 @@ switch ($url) {
         break;
 
     case 'user-index':
-        (new AdminController)->index();
+        (new UserController)->index();
         break;
 
     case 'admin-users-create':
-        (new AdminController)->create();
+        (new UserController)->create();
         break;
 
     case 'admin-users-update':
-        (new AdminController)->update();
+        (new UserController)->update();
         break;
 
     case 'admin-users-delete':
-        (new AdminController)->delete();
+        (new UserController)->delete();
         break;
 
     case 'admin-users-activate':
-        (new AdminController)->activate();
+        (new UserController)->activate();
         break;
 
     case 'profile':

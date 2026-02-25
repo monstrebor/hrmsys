@@ -81,13 +81,14 @@ class User extends Database
     public function create(array $data)
     {
         $stmt = $this->conn->prepare(
-            "INSERT INTO users (name, email, password, isAdmin, isActive) VALUES (?, ?, ?, ?, ?)"
+            "INSERT INTO users (name, email, password, isAdmin, isActive,isNew) VALUES (?, ?, ?, ?, ?,?)"
         );
         return $stmt->execute([
             $data['name'],
             $data['email'],
             $data['password'],
             $data['isAdmin'],
+            1,
             1
         ]);
     }
@@ -218,5 +219,14 @@ class User extends Database
 
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute($params);
+    }
+
+    public function updateIsNew($userId, $value)
+    {
+        $stmt = $this->conn->prepare("UPDATE users SET isNew = :value WHERE id = :id");
+        return $stmt->execute([
+            ':value' => $value,
+            ':id' => $userId
+        ]);
     }
 }

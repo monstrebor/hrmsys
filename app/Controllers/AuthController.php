@@ -69,53 +69,6 @@ class AuthController extends Controller
         header("Location: index.php?url=home");
         exit;
     }
-    public function setPassword()
-    {
-        $token = $_GET['token'] ?? '';
-
-        $userModel = new User();
-        if (!$userModel->isValidToken($token)) {
-            $this->view('auth/token-expired', [
-                'title' => 'Link Expired'
-            ]);
-            return;
-        }
-
-        $this->view('auth/set-password', [
-            'title' => 'Set Password',
-            'token' => $token
-        ]);
-    }
-
-
-    public function savePassword()
-    {
-        $token    = $_POST['token'] ?? '';
-        $password = $_POST['password'] ?? '';
-
-        if (!$token || !$password) {
-            die("Invalid request.");
-        }
-
-        if (strlen($password) < 8) {
-            die("Password must be at least 8 characters.");
-        }
-
-        $userModel = new User();
-
-        $updated = $userModel->setPasswordByToken($token, $password);
-
-        if ($updated) {
-            $this->view('auth/password-success', [
-                'title' => 'Success'
-            ]);
-            return;
-        }
-
-        $this->view('auth/token-expired', [
-            'title' => 'Link Expired'
-        ]);
-    }
 
     public function sessionExpired()
     {

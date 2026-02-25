@@ -14,12 +14,12 @@
             <div class="card-body p-4">
 
                 <form method="POST"
-                      action="index.php?url=save-password"
-                      onsubmit="return validateForm()">
+                    action="index.php?url=profile-save-password"
+                    onsubmit="return validateForm()">
 
                     <input type="hidden"
-                           name="token"
-                           value="<?= htmlspecialchars($token) ?>">
+                        name="token"
+                        value="<?= htmlspecialchars($token) ?>">
 
                     <div class="mb-4">
                         <label class="form-label fw-semibold">
@@ -27,10 +27,10 @@
                         </label>
 
                         <input type="password"
-                               id="password"
-                               name="password"
-                               class="form-control rounded-3 shadow-sm py-2"
-                               required minlength="8">
+                            id="password"
+                            name="password"
+                            class="form-control rounded-3 shadow-sm py-2"
+                            required minlength="8">
 
                         <small class="text-muted">
                             Minimum 8 characters, include uppercase & numbers
@@ -38,8 +38,8 @@
 
                         <div class="progress mt-3 rounded-pill" style="height: 6px;">
                             <div id="strengthBar"
-                                 class="progress-bar rounded-pill"
-                                 style="width: 0%; transition: 0.4s;">
+                                class="progress-bar rounded-pill"
+                                style="width: 0%; transition: 0.4s;">
                             </div>
                         </div>
 
@@ -52,18 +52,25 @@
                         </label>
 
                         <input type="password"
-                               id="confirmPassword"
-                               class="form-control rounded-3 shadow-sm py-2"
-                               required>
+                            id="confirmPassword"
+                            class="form-control rounded-3 shadow-sm py-2"
+                            required>
 
                         <small id="matchError"
-                               class="text-danger d-none">
+                            class="text-danger d-none">
                             Passwords do not match
                         </small>
+
+                        <div class="progress mt-3 rounded-pill" style="height: 6px;">
+                            <div id="strengthBar"
+                                class="progress-bar rounded-pill"
+                                style="width: 0%; transition: 0.4s;">
+                            </div>
+                        </div>
                     </div>
 
                     <button class="btn btn-primary w-100 py-2 fw-semibold rounded-pill shadow-sm">
-                        Set Password
+                        Save Password
                     </button>
 
                 </form>

@@ -9,7 +9,7 @@ require_once "../app/Core/Helpers.php";
 require_once "../app/Core/Mailer.php";
 require_once "../app/Core/EmailView.php";
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function index()
     {

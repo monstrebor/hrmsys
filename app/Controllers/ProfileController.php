@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $userModel = new User();
         $user = $userModel->findById($userId);
 
-        $this->view('profile/profile', [
+        $this->view('profile/index', [
             'title' => 'My Profile | SEMSYS',
             'user'  => $user
         ]);
@@ -41,7 +41,7 @@ class ProfileController extends Controller
         $userModel = new User();
         $user = $userModel->findById($userId);
 
-        $this->view('user/employee/profile/profile', [
+        $this->view('/profile/index', [
             'title' => 'My Profile | SEMSYS',
             'user'  => $user
         ]);
@@ -70,7 +70,11 @@ class ProfileController extends Controller
         $updated = $userModel->updatePassword($_SESSION['user']['id'], $hash);
 
         if ($updated) {
+            $userModel->updateIsNew($_SESSION['user']['id'], 0);  
+
             $_SESSION['success'] = "Password updated successfully!";
+
+            $_SESSION['user']['isNew'] = 0;
         } else {
             $_SESSION['error'] = "Failed to update password. Try again.";
         }

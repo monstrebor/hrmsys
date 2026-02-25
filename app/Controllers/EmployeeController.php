@@ -43,7 +43,9 @@ class EmployeeController extends Controller
                 'name'     => $_POST['name'],
                 'email'    => $_POST['email'],
                 'password' => $hashedPassword,
-                'isAdmin'  => 0
+                'isAdmin'  => 0,
+                'isActive' => 1,
+                'isNew'    => 1
             ])) {
                 throw new Exception("Email already exists.");
             }

@@ -1,24 +1,41 @@
-<div class="d-flex min-vh-100">
+<div class="flex-grow-1 ml-16 transition-all">
+
     <?php require_once __DIR__ . '/../../partials/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/../../partials/navbar.php'; ?>
 
     <main class="flex-grow-1 bg-light p-4">
         <div class="container-fluid">
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2 class="mb-1">Employee Portal</h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 p-3 bg-white shadow-sm rounded-4">
+
+                <div class="mb-3 mb-md-0">
+                    <h2 class="fw-bold mb-1 display-5">Employee Portal</h2>
                     <p class="text-muted mb-0">
-                        Welcome back, <?= htmlspecialchars($employee['name']) ?>
+                        Welcome back, <span class="fw-semibold"><?= htmlspecialchars($employee['name']) ?></span>
                     </p>
                 </div>
 
-                <div class="d-flex gap-2">
-                    <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#viewPayslipsModal">📄 View Payslips</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#requestLeaveModal">📝 Request Leave</a>
-                    <a href="index.php?url=employer-profile" class="btn btn-outline-secondary btn-sm">⚙️ Edit Profile</a>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="#"
+                        class="btn btn-outline-primary rounded-pill shadow-sm py-2 px-3 btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#viewPayslipsModal">
+                        📄 View Payslips
+                    </a>
+
+                    <a href="#"
+                        class="btn btn-outline-success rounded-pill shadow-sm py-2 px-3 btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#requestLeaveModal">
+                        📝 Request Leave
+                    </a>
+
+                    <a href="index.php?url=employer-profile"
+                        class="btn btn-outline-secondary rounded-pill shadow-sm py-2 px-3 btn-sm">
+                        ⚙️ Edit Profile
+                    </a>
                 </div>
+
             </div>
 
             <div class="position-relative mb-5">
