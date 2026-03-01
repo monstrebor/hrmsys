@@ -56,7 +56,7 @@
                                     data-bs-target="#editRequestTypeModal<?= $type['id']; ?>">
                                     Edit
                                 </button>
-                                <!-- <form method="POST"
+                                <form method="POST"
                                     action="index.php?url=admin-request-types-delete"
                                     class="d-inline"
                                     onsubmit="return confirm('Delete this request type?');">
@@ -64,7 +64,7 @@
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
                                         Delete
                                     </button>
-                                </form> -->
+                                </form>
                             </td>
                         </tr>
 

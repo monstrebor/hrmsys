@@ -45,4 +45,44 @@ class RequestType
             $data['is_active']
         ]);
     }
+
+    public function update($data)
+    {
+        try {
+            $stmt = $this->conn->prepare("
+                UPDATE request_types
+                SET
+                    name = :name,
+                    description = :description,
+                    icon = :icon,
+                    requires_attachment = :requires_attachment,
+                    is_active = :is_active
+                WHERE id = :id
+            ");
+
+            $stmt->execute([
+                ':id' => $data['id'],
+                ':name' => $data['name'],
+                ':description' => $data['description'],
+                ':icon' => $data['icon'],
+                ':requires_attachment' => $data['requires_attachment'],
+                ':is_active' => $data['is_active']
+            ]);
+
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Failed to update request type: " . $e->getMessage());
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM request_types WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

@@ -47,4 +47,62 @@ class RequestTypeController extends Controller
         header("Location: index.php?url=admin-request-types");
         exit;
     }
+
+    public function update()
+    {
+        Auth::requireAdmin();
+
+        try {
+            if (!isset($_POST['id'])) {
+                throw new Exception("Invalid request type ID.");
+            }
+
+            $model = new RequestType();
+
+            $data = [
+                'id' => $_POST['id'],
+                'name' => $_POST['name'],
+                'description' => $_POST['description'],
+                'icon' => $_POST['icon'],
+                'requires_attachment' => isset($_POST['requires_attachment']) ? 1 : 0,
+                'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            ];
+
+            $model->update($data);
+
+            $_SESSION['success'] = "Request type updated successfully.";
+        } catch (Exception $e) {
+            $_SESSION['error'] = "Failed to update request type: " . $e->getMessage();
+        }
+
+        header("Location: index.php?url=admin-request-types");
+        exit;
+    }
+
+    public function delete()
+    {
+        Auth::requireAdmin(); 
+
+        try {
+            if (!isset($_POST['id'])) {
+                throw new Exception("Request type ID is missing.");
+            }
+
+            $id = $_POST['id'];
+
+            $requestTypeModel = new RequestType();
+            $deleted = $requestTypeModel->delete($id);
+
+            if ($deleted) {
+                $_SESSION['success'] = "Request type deleted successfully.";
+            } else {
+                $_SESSION['error'] = "Request type could not be deleted.";
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = "Error: " . $e->getMessage();
+        }
+
+        header("Location: index.php?url=admin-request-types");
+        exit;
+    }
 }

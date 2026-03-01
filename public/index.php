@@ -129,6 +129,14 @@ switch ($url) {
         (new RequestTypeController)->create();
         break;
 
+    case 'admin-request-types-update':
+        (new RequestTypeController)->update();
+        break;
+
+    case 'admin-request-types-delete':
+        (new RequestTypeController)->delete();
+        break;
+
     default:
         View::render("error", ['title' => '404 Not Found | SEMSYS']);
         break;
