@@ -33,6 +33,12 @@
                 </a>
             </li>
 
+                        <li class="group">
+                <a href="index.php?url=admin-request-types" class="nav-link text-white rounded hover:bg-white hover:bg-opacity-10">
+                    <i class="fas fa-table me-2"></i><span class="nav-text hidden group-hover:inline">Manage Request Type</span>
+                </a>
+            </li>
+
             <li class="group">
                 <a href="#" class="nav-link text-white rounded hover:bg-white hover:bg-opacity-10">
                     <i class="fas fa-cogs me-2"></i><span class="nav-text hidden group-hover:inline">Module 1</span>

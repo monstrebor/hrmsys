@@ -47,10 +47,8 @@
                              <td class="text-end">
                                  <button
                                      class="btn btn-sm btn-outline-secondary btn-edit"
-                                     data-id="<?= $user['id'] ?>"
-                                     data-name="<?= htmlspecialchars($user['name'], ENT_QUOTES) ?>"
-                                     data-email="<?= htmlspecialchars($user['email'], ENT_QUOTES) ?>"
-                                     data-role="<?= $user['isAdmin'] ?>">
+                                     data-bs-toggle="modal"
+                                     data-bs-target="#editUserModal<?= $user['id']; ?>">
                                      Edit
                                  </button>
                                  <form method="POST"
@@ -66,6 +64,7 @@
                                  </form>
                              </td>
                          </tr>
+                         <?php require __DIR__ . '/edit-user-modal.php'; ?>
                      <?php endforeach; ?>
                  </tbody>
              </table>

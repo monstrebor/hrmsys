@@ -8,13 +8,9 @@
 
             <?php require_once __DIR__ . '/../../partials/notif.php'; ?>
 
-            <?php require_once __DIR__ . '/table-user.php'; ?>
-
-            <?php require_once __DIR__ . '/deactivated-accounts.php'; ?>
+            <?php require_once __DIR__ . '/table-request-types.php'; ?>
 
         </div>
     </main>
-
-    <?php require_once __DIR__ . '/create-user-modal.php'; ?>
 
 </div>

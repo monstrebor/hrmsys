@@ -12,6 +12,7 @@ require_once "../app/Controllers/UserController.php";
 require_once "../app/Controllers/EmployeeController.php";
 require_once "../app/Controllers/ProfileController.php";
 require_once "../app/Controllers/EmployeePortalController.php";
+require_once "../app/Controllers/RequestTypeController.php";
 
 $url = $_GET['url'] ?? 'home';
 
@@ -118,6 +119,14 @@ switch ($url) {
 
     case 'employee-module':
         (new EmployeePortalController)->employeeModule();
+        break;
+
+    case 'admin-request-types':
+        (new RequestTypeController)->index();
+        break;
+
+    case 'admin-request-types-create':
+        (new RequestTypeController)->create();
         break;
 
     default:
