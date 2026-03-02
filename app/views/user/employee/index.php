@@ -6,36 +6,29 @@
     <main class="flex-grow-1 bg-light p-4">
         <div class="container-fluid">
 
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 p-3 bg-white shadow-sm rounded-4">
-
+            <div class="flex justify-start align-items-center mb-5 p-3 bg-white shadow-sm rounded-4">
                 <div class="mb-3 mb-md-0">
                     <h2 class="fw-bold mb-1 display-5">Employee Portal</h2>
                     <p class="text-muted mb-0">
                         Welcome back, <span class="fw-semibold"><?= htmlspecialchars($employee['name']) ?></span>
                     </p>
                 </div>
-
+            </div>
+            <div>
                 <div class="d-flex flex-wrap gap-2">
-                    <a href="#"
-                        class="btn btn-outline-primary rounded-pill shadow-sm py-2 px-3 btn-sm"
-                        data-bs-toggle="modal"
-                        data-bs-target="#viewPayslipsModal">
-                        📄 View Payslips
-                    </a>
 
-                    <a href="#"
-                        class="btn btn-outline-success rounded-pill shadow-sm py-2 px-3 btn-sm"
-                        data-bs-toggle="modal"
-                        data-bs-target="#requestLeaveModal">
-                        📝 Request Leave
-                    </a>
+                    <?php foreach ($requestTypes as $type): ?>
+                        <a href="#"
+                            class="btn btn-primary rounded-pill shadow-sm py-2 px-3 btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#requestModal<?= $type['id']; ?>">
 
-                    <a href="index.php?url=employer-profile"
-                        class="btn btn-outline-secondary rounded-pill shadow-sm py-2 px-3 btn-sm">
-                        ⚙️ Edit Profile
-                    </a>
+                            <i class="fa-solid <?= htmlspecialchars($type['icon']); ?>"></i>
+                            <?= htmlspecialchars($type['name']); ?>
+                        </a>
+                    <?php endforeach; ?>
+                    <?php require_once __DIR__ . '/../request/request-modal.php'; ?>
                 </div>
-
             </div>
 
             <div class="position-relative mb-5">

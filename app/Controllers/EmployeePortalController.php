@@ -21,9 +21,13 @@ class EmployeePortalController extends Controller
             die('Employee profile not found for this user');
         }
 
+        $requestTypeModel = new RequestType();
+        $requestTypes = $requestTypeModel->all();
+
         $this->view('user/employee/index', [
             'title' => 'Employee Portal | SEMSYS',
-            'employee' => $employee
+            'employee' => $employee,
+            'requestTypes' => $requestTypes
         ]);
     }
 
@@ -45,7 +49,7 @@ class EmployeePortalController extends Controller
         }
 
         ob_start();
-        include $contentFile;    
+        include $contentFile;
         $moduleContent = ob_get_clean();
 
         $layoutFile = __DIR__ . '/../../Modules/employee-portal/partials/layout.php';
@@ -54,6 +58,6 @@ class EmployeePortalController extends Controller
             die("Layout file not found at: $layoutFile");
         }
 
-        include $layoutFile; 
+        include $layoutFile;
     }
 }

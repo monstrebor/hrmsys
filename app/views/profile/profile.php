@@ -52,7 +52,7 @@
             <!-- Buttons -->
             <div class="d-flex justify-content-end gap-3 mt-4">
 
-                <a href="#"
+                <a href="index.php?url=employee-profile-index"
                     class="btn btn-outline-primary rounded-pill px-4 fw-semibold">
                     Edit Profile
                 </a>
