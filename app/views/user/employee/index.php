@@ -14,7 +14,7 @@
                     </p>
                 </div>
             </div>
-            <div>
+            <div class="mb-5">
                 <div class="d-flex flex-wrap gap-2">
 
                     <?php foreach ($requestTypes as $type): ?>
@@ -31,18 +31,36 @@
                 </div>
             </div>
 
-            <div class="position-relative mb-5">
-                <div style="height: 220px; background: url('<?= $employee['cover_image'] ?? '/assets/img/default-cover.jpg' ?>') center/cover; border-radius: 8px;"></div>
+<div class="position-relative">
 
-                <div class="position-absolute" style="bottom: -60px; left: 30px;">
-                    <img src="<?= $employee['profile_image'] ?? '/assets/img/default-avatar.png' ?>"
-                        class="rounded-circle border border-4 border-white shadow"
-                        width="120" height="120">
-                </div>
-            </div>
+    <div style="
+        height:220px;
+        background:url('<?= !empty($employee['cover_image'])
+            ? '/hrmsys/public/images/' . $employee['cover_image']
+            : '/hrmsys/public/assets/images/default-cover.jpg' ?>')
+        center/cover;
+        border-radius:8px;">
+    </div>
 
-            <div class="row mt-5">
+    <div class="position-absolute" style="bottom:-60px; left:30px;">
 
+        <img
+            src="<?= !empty($employee['profile_image'])
+                ? '/hrmsys/public/images/' . $employee['profile_image']
+                : '/hrmsys/public/assets/images/default-profile.jpg' ?>"
+            class="rounded-circle border border-4 border-white shadow"
+            style="
+                width:140px;
+                height:140px;
+                object-fit:cover;
+            "
+            alt="Profile Image">
+
+    </div>
+
+</div>
+
+            <div class="row mt-[80px] g-4">
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-body text-center">
