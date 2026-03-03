@@ -2,7 +2,8 @@
 
     <?php require_once __DIR__ . '/../../partials/sidebar.php'; ?>
     <?php require_once __DIR__ . '/../../partials/navbar.php'; ?>
-
+    <?php require_once __DIR__ . '/../../partials/notif.php'; ?>
+    
     <main class="flex-grow-1 bg-light p-4">
         <div class="container-fluid">
 
@@ -15,8 +16,8 @@
                 </div>
             </div>
             <div class="mb-5">
+                <p class="font-bold mb-2 text-2xl">Request Buttons:</p>
                 <div class="d-flex flex-wrap gap-2">
-
                     <?php foreach ($requestTypes as $type): ?>
                         <a href="#"
                             class="btn btn-primary rounded-pill shadow-sm py-2 px-3 btn-sm"
@@ -31,34 +32,34 @@
                 </div>
             </div>
 
-<div class="position-relative">
+            <div class="position-relative">
 
-    <div style="
+                <div style="
         height:220px;
         background:url('<?= !empty($employee['cover_image'])
-            ? '/hrmsys/public/images/' . $employee['cover_image']
-            : '/hrmsys/public/assets/images/default-cover.jpg' ?>')
+                            ? '/hrmsys/public/images/' . $employee['cover_image']
+                            : '/hrmsys/public/assets/images/default-cover.jpg' ?>')
         center/cover;
         border-radius:8px;">
-    </div>
+                </div>
 
-    <div class="position-absolute" style="bottom:-60px; left:30px;">
+                <div class="position-absolute" style="bottom:-60px; left:30px;">
 
-        <img
-            src="<?= !empty($employee['profile_image'])
-                ? '/hrmsys/public/images/' . $employee['profile_image']
-                : '/hrmsys/public/assets/images/default-profile.jpg' ?>"
-            class="rounded-circle border border-4 border-white shadow"
-            style="
+                    <img
+                        src="<?= !empty($employee['profile_image'])
+                                    ? '/hrmsys/public/images/' . $employee['profile_image']
+                                    : '/hrmsys/public/assets/images/default-profile.jpg' ?>"
+                        class="rounded-circle border border-4 border-white shadow"
+                        style="
                 width:140px;
                 height:140px;
                 object-fit:cover;
             "
-            alt="Profile Image">
+                        alt="Profile Image">
 
-    </div>
+                </div>
 
-</div>
+            </div>
 
             <div class="row mt-[80px] g-4">
                 <div class="col-md-4 mb-4">

@@ -13,6 +13,7 @@ require_once "../app/Controllers/EmployeeController.php";
 require_once "../app/Controllers/ProfileController.php";
 require_once "../app/Controllers/EmployeePortalController.php";
 require_once "../app/Controllers/RequestTypeController.php";
+require_once "../app/Controllers/RequestController.php";
 
 $url = $_GET['url'] ?? 'home';
 
@@ -135,6 +136,10 @@ switch ($url) {
 
     case 'admin-request-types-delete':
         (new RequestTypeController)->delete();
+        break;
+
+    case 'user-request-create':
+        (new RequestController)->create();
         break;
 
     default:

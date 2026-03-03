@@ -8,9 +8,10 @@
                     enctype="multipart/form-data">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">
+                        <h5 class="modal-title text-2xl">
                             <i class="fa-solid <?= $type['icon']; ?>"></i>
                             <?= htmlspecialchars($type['name']); ?>
+                            Request
                         </h5>
 
                         <button type="button"
@@ -53,6 +54,7 @@
                                 <input type="file"
                                     name="attachment"
                                     class="form-control"
+                                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
                                     required>
                             </div>
                         <?php endif; ?>

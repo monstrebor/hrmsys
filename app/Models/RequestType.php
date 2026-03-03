@@ -85,4 +85,19 @@ class RequestType
             return false;
         }
     }
+
+    public function find($id)
+    {
+        $stmt = $this->conn->prepare("
+        SELECT *
+        FROM request_types
+        WHERE id = :id
+        LIMIT 1
+    ");
+
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
