@@ -1,60 +1,116 @@
-<div class="card shadow-sm">
-    <div class="card-body">
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body p-4">
 
-        <h5 class="mb-3 fw-bold">All Requests</h5>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold mb-0 text-3xl">All Requests</h5>
+
+            <span class="badge bg-light text-dark border text-xl">
+                <?= count($requests); ?> Total
+            </span>
+        </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="table table-borderless align-middle mb-0">
 
-                <thead class="table-light">
+                <thead class="text-uppercase small text-muted border-bottom">
                     <tr>
                         <th>#</th>
-                        <th>User</th>
+                        <th>Sender</th>
                         <th>Type</th>
                         <th>Title</th>
+                        <th style="width:18%">Details</th>
                         <th>Status</th>
-                        <th>Created</th>
+                        <th>File</th>
+                        <th>Admin Remarks</th>
+                        <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php if (!empty($requests)): ?>
                         <?php foreach ($requests as $index => $request): ?>
+
+                            <?php
+                            $badge = match ($request['status']) {
+                                'Approved' => 'success',
+                                'Rejected' => 'danger',
+                                'Cancelled' => 'secondary',
+                                'Completed' => 'info',
+                                default => 'warning'
+                            };
+                            ?>
+
                             <tr>
-                                <td><?= $index + 1; ?></td>
-                                <td><?= htmlspecialchars($request['user_name']); ?></td>
-                                <td><?= htmlspecialchars($request['request_type']); ?></td>
-                                <td><?= htmlspecialchars($request['title']); ?></td>
+                                <td class="text-muted"><?= $index + 1; ?></td>
 
                                 <td>
-                                    <?php
-                                    $badge = match ($request['status']) {
-                                        'Approved' => 'success',
-                                        'Rejected' => 'danger',
-                                        'Cancelled' => 'secondary',
-                                        'Completed' => 'info',
-                                        default => 'warning'
-                                    };
-                                    ?>
-                                    <span class="badge bg-<?= $badge; ?>">
+                                    <div class="fw-semibold">
+                                        <?= htmlspecialchars($request['user_name']); ?>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-light text-dark border">
+                                        <?= htmlspecialchars($request['request_type']); ?>
+                                    </span>
+                                </td>
+
+                                <td class="fw-medium">
+                                    <?= htmlspecialchars($request['title']); ?>
+                                </td>
+
+                                <td class="text-muted small text-truncate" style="max-width: 200px;">
+                                    <?= htmlspecialchars($request['details']); ?>
+                                </td>
+
+                                <td>
+                                    <span class="badge rounded-pill bg-<?= $badge; ?>">
                                         <?= $request['status']; ?>
                                     </span>
                                 </td>
 
                                 <td>
+                                    <?php if (!empty($request['attachment'])): ?>
+                                        <a href="index.php?url=admin-download-request&id=<?= $request['id']; ?>"
+                                            class="text-decoration-none text-primary small">
+                                            📎 Download
+                                        </a>
+                                    <?php else: ?>
+                                        <span class="text-muted small">—</span>
+                                    <?php endif; ?>
+                                </td>
+
+                                <td class="small text-truncate" style="max-width: 180px;">
+                                    <?php if (!empty($request['admin_remarks'])): ?>
+                                        <?= htmlspecialchars($request['admin_remarks']); ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">—</span>
+                                    <?php endif; ?>
+                                </td>
+
+                                <td class="small text-muted">
                                     <?= date('M d, Y', strtotime($request['created_at'])); ?>
                                 </td>
+
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#manageRequest<?= $request['id']; ?>">
+                                        Manage
+                                    </button>
+                                </td>
+                                <?php require __DIR__ . '/modal-request.php'; ?>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="6" class="text-center text-muted">
+                            <td colspan="9" class="text-center text-muted">
                                 No requests found.
                             </td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
-
             </table>
         </div>
 

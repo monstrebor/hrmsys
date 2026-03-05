@@ -142,6 +142,18 @@ switch ($url) {
         (new RequestController)->create();
         break;
 
+    case 'admin-request':
+        (new RequestController)->index();
+        break;
+
+    case 'admin-request-update-status':
+        (new RequestController)->updateRequestStatus();
+        break;
+
+    case 'admin-download-request':
+        (new RequestController)->downloadRequest();
+        break;
+
     default:
         View::render("error", ['title' => '404 Not Found | SEMSYS']);
         break;

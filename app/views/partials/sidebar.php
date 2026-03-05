@@ -34,6 +34,12 @@
             </li>
 
             <li class="group">
+                <a href="index.php?url=admin-request" class="nav-link text-white rounded hover:bg-white hover:bg-opacity-10">
+                    <i class="fas fa-address-book me-2"></i><span class="nav-text hidden group-hover:inline">Manage Request</span>
+                </a>
+            </li>
+
+            <li class="group">
                 <a href="index.php?url=admin-request-types" class="nav-link text-white rounded hover:bg-white hover:bg-opacity-10">
                     <i class="fas fa-table me-2"></i><span class="nav-text hidden group-hover:inline">Manage Request Type</span>
                 </a>
