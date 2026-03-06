@@ -64,28 +64,46 @@
                                     <?= htmlspecialchars($request['details']); ?>
                                 </td>
 
-                                <td>
-                                    <span class="badge rounded-pill bg-<?= $badge; ?>">
-                                        <?= $request['status']; ?>
-                                    </span>
+                                <td style="min-width:90px;">
+
+                                    <form method="POST" action="index.php?url=admin-request-update-status">
+
+                                        <input type="hidden" name="id" value="<?= $request['id']; ?>">
+
+                                        <select name="status"
+                                            class="form-select form-select-sm border-<?= $badge; ?> text-<?= $badge; ?>"
+                                            onchange="this.form.submit()">
+
+                                            <?php
+                                            $statuses = ['Pending', 'Approved', 'Rejected', 'Cancelled', 'Completed'];
+                                            foreach ($statuses as $status):
+                                            ?>
+
+                                                <option value="<?= $status; ?>"
+                                                    <?= $request['status'] === $status ? 'selected' : '' ?>>
+                                                    <?= $status; ?>
+
+                                                </option>
+
+                                            <?php endforeach; ?>
+
+                                        </select>
+
+                                    </form>
+
                                 </td>
 
-                                <td>
-                                    <?php if (!empty($request['attachment'])): ?>
-                                        <a href="index.php?url=admin-download-request&id=<?= $request['id']; ?>"
-                                            class="text-decoration-none text-primary small">
-                                            📎 Download
-                                        </a>
-                                    <?php else: ?>
-                                        <span class="text-muted small">—</span>
-                                    <?php endif; ?>
+                                <td class="text-center">
+
+                                    <?php require __DIR__ . '/downloadFile.php'; ?>
+
                                 </td>
 
                                 <td class="small text-truncate" style="max-width: 180px;">
                                     <?php if (!empty($request['admin_remarks'])): ?>
                                         <?= htmlspecialchars($request['admin_remarks']); ?>
                                     <?php else: ?>
-                                        <span class="text-muted">—</span>
+                                        <span class="text-muted">——</span>
                                     <?php endif; ?>
                                 </td>
 

@@ -49,7 +49,7 @@ class RequestController extends Controller
 
             if (!empty($_FILES['attachment']['name'])) {
 
-                $uploadDir = "public/uploads/requests/";
+                $uploadDir = __DIR__ . "/../../public/uploads/requests/";
 
                 if (!is_dir($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
@@ -140,7 +140,7 @@ class RequestController extends Controller
             die('File not found.');
         }
 
-        $filePath = __DIR__ . "/../../public/uploads/" . $request['attachment'];
+        $filePath = __DIR__ . "/../../public/uploads/requests/" . $request['attachment'];
 
         if (!file_exists($filePath)) {
             die('File does not exist.');
